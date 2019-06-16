@@ -1,0 +1,70 @@
+.title {
+  text-align: center;
+  font-size: 54px;
+  margin: 5px;
+}
+
+.timerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 150px;
+  padding: 20px;
+  border: 2px solid red;
+}
+
+.description {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.btn {
+  display: block;
+  margin: 20px;
+}
+
+.timer {
+  display: none;
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.finishText {
+  display: none;
+  font-size: 52px;
+  color: #fff;
+  margin: 5px;
+}
+
+.treasureImg{
+    width: 200px;
+    height: 200px;
+}
+
+.treasureMap{
+  display: none;
+  background-image: url(./treasure-map.jpg);
+  width: 100%;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 22;
+}
+
+.treasureMap:after {
+  padding-top: 37.1%;
+  /* this llama image is 800x600 so set the padding top % to match 600/800 = .75 */
+  display: block;
+  content: '';
+}
+
+span {
+  padding: 9px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: #df0404d9;
+  color: #fff;
+  z-index: 77;
+}
