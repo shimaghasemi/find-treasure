@@ -1,4 +1,4 @@
-let treasureMap = document.querySelector('.treasureMap')
+let treasureMap = document.querySelector('#treasureMapBox')
 // Timer
 let timer = document.querySelector('#timer');
 function buildCountDown(inputSeconds) {
@@ -46,7 +46,6 @@ handleStart = () => {
 startBtn.addEventListener('click', handleStart)
 
 // Game
-
 const randomGenerator = (start, end) => {
   return Math.floor((Math.random() * (end - start))) + start;
 };
@@ -85,13 +84,16 @@ const showHelpBox = (userPointX, userPointY, distance) => {
 
 treasureMap.addEventListener('click', (evt) => {
   let userSelectedPoint = {
-      x: evt.clientX,
-      y: evt.clientY
+    x: evt.clientX,
+    y: evt.clientY
   };
   let distance = checkDistance(userSelectedPoint);
   showHelpBox(userSelectedPoint.x, userSelectedPoint.y, distance);
   if (isUserWin(distance)) {
-      alert('شما برنده شدید');
+    let treasure = document.querySelector('.treasureImg')
+    alert('شما برنده شدید');
+    treasure.style.display = 'block'
+    treasure.style.top = userSelectedPoint.y + 'px';
+    treasure.style.left = userSelectedPoint.x + 'px';
   }
-
 });
