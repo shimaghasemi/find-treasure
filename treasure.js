@@ -1,4 +1,5 @@
 let treasureMap = document.querySelector('#treasureMapBox')
+let finishText = document.querySelector('.finishText');
 // Timer
 let timer = document.querySelector('#timer');
 function buildCountDown(inputSeconds) {
@@ -25,7 +26,6 @@ handleCountDown = (targetSeconds) => {
     if (targetSeconds === -1) {
       clearInterval(countDownTimer);
       timer.style.display = 'none';
-      let finishText = document.querySelector('.finishText');
       finishText.style.display = 'block'
       treasureMap.style.display = 'none';
     }
@@ -33,7 +33,6 @@ handleCountDown = (targetSeconds) => {
 }
 
 handleStart = () => {
-  console.log('sss')
   let startBtn = document.querySelector('#startBtn')
   let startText = document.querySelector('.description')
   treasureMap.style.display = 'block';
@@ -92,6 +91,9 @@ treasureMap.addEventListener('click', (evt) => {
   if (isUserWin(distance)) {
     let treasure = document.querySelector('.treasureImg')
     alert('شما برنده شدید');
+    timer.style.display = 'none';
+    finishText.style.display = 'block'
+    treasureMap.style.display = 'none';
     treasure.style.display = 'block'
     treasure.style.top = userSelectedPoint.y + 'px';
     treasure.style.left = userSelectedPoint.x + 'px';
