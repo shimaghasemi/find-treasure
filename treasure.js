@@ -91,6 +91,9 @@ treasureMap.addEventListener('click', (evt) => {
   if (isUserWin(distance)) {
     let treasure = document.querySelector('.treasureImg')
     alert('شما برنده شدید');
+    // let finishText = timer.createElement('p')
+    // finishText.classList.add('animated', 'zoomIn', 'finishText')
+    // let finish = 'Finished Game'
     timer.style.display = 'none';
     finishText.style.display = 'block'
     treasureMap.style.display = 'none';
