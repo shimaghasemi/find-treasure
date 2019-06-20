@@ -83,3 +83,37 @@ span {
   color: #fff;
   z-index: 77;
 }
+
+.bombImg{
+  background-image: url(./bomb.jpeg);
+  width: 365px;
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  z-index: 88;
+  top: 0;
+}
+
+.timerBomb{
+  position: absolute;
+    margin: 0 auto;
+    top: 53%;
+    left: 35%;
+    padding: 5px;
+    color: #FFF;
+    background-color: rgba(224, 21, 79, 0.78);
+    font-size: 29px;
+}
+
+.explosion{
+  background-image: url(./explosion.jpg);
+  width: 100%;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+

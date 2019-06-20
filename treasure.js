@@ -2,6 +2,7 @@ let treasureMap = document.querySelector('#treasureMapBox')
 let finishText = document.querySelector('.finishText');
 // Timer
 let timer = document.querySelector('#timer');
+let bombTimer = document.querySelector('#bombTimer');
 function buildCountDown(inputSeconds) {
   let hours = 0;
   let minutes = 0;
@@ -10,6 +11,10 @@ function buildCountDown(inputSeconds) {
   minutes = parseInt((inputSeconds - hours * 3600) / 60);
   seconds = parseInt((inputSeconds - hours * 3600) % 60);
   return `${hours > 9 ? hours : '0' + hours}:${minutes > 9 ? minutes : '0' + minutes}:${seconds > 9 ? seconds : '0' + seconds}`;
+}
+
+const randomBomb = () => {
+  return Math.floor(Math.random() * (window.screen.height - (window.screen.height - 200))) + 200;
 }
 
 handleCountDown = (targetSeconds) => {
@@ -32,6 +37,23 @@ handleCountDown = (targetSeconds) => {
   }, 1000);
 }
 
+handleBombTimer = () =>{
+  let targetBomb = 5;
+  let countDownBombTimer = setInterval(function () {
+    let countDownResult = buildCountDown(targetBomb);
+    bombTimer.innerHTML = countDownResult;
+    console.log(countDownResult)
+    targetBomb --;
+    if (targetSeconds === -1) {
+      clearInterval(countDownBombTimer);
+      alert(`Finished`)
+      document.createElement('div')
+      document.classList='explosion animated bounceIn'
+    }
+  }, 1000);
+}
+
+
 handleStart = () => {
   let startBtn = document.querySelector('#startBtn')
   let startText = document.querySelector('.description')
@@ -48,9 +70,11 @@ startBtn.addEventListener('click', handleStart)
 const randomGenerator = (start, end) => {
   return Math.floor((Math.random() * (end - start))) + start;
 };
+
 const getDistance = (from, to) => {
   return Math.floor(Math.sqrt(Math.pow((to.x - from.x), 2) + Math.pow((to.y - from.y), 2)));
 };
+
 const getRandomPoint = (minHeight, maxHeight, minWidth, maxWidth) => {
   let randomY = randomGenerator(minHeight, maxHeight);
   let randomX = randomGenerator(minWidth, maxWidth);
@@ -82,6 +106,8 @@ const showHelpBox = (userPointX, userPointY, distance) => {
 };
 
 treasureMap.addEventListener('click', (evt) => {
+  handleBombTimer();
+  console.log(handleBombTimer)
   let userSelectedPoint = {
     x: evt.clientX,
     y: evt.clientY
