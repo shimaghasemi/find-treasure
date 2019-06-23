@@ -8,6 +8,7 @@
   <title>Find Treasure</title>
   <link rel="stylesheet" href="./treasure.css">
   <link rel="stylesheet" href="./animate.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -20,13 +21,25 @@
     <button type="button" id="startBtn" class="btn btn-info">Start Game</button>
     <p id="timer" class="animated infinite timer">00:00:00</p>
     <p class="animated zoomIn finishText">Finished Game</p>
-  </div>
-  <div class="treasureMap">
-    <div class="treasureMapBox" id="treasureMapBox">
+    <div class="hearts">
+      <i class="fa fa-heart" id="heart1"></i>
+      <i class="fa fa-heart" id="heart2"></i>
+      <i class="fa fa-heart" id="heart3"></i>
+      <i class="fa fa-heart" id="heart4"></i>
+      <i class="fa fa-heart" id="heart5"></i>
+      <i class="fa fa-heart" id="heart6"></i>
+      <i class="fa fa-heart" id="heart7"></i>
+      <i class="fa fa-heart" id="heart8"></i>
     </div>
   </div>
-  <img src="./treasure.jpeg" class="treasureImg animated zoomIn" alt="">
-  <div class="bombImg animated pulse"><p id="bombTimer" class="timerBomb">00:00:00</p></div>
+  <div class="treasureMap" id="treasureMapBox">
+  </div>
+  </div>
+  <div src="./explosion.jpg" id="explosion" class="explosion animated shake" alt="">
+    <h1>You Dont Have Any Chance</h1>
+    <h3>The Bomb Exploed</h3>
+  </div>
+  <img src="./treasure.jpeg" id="treasure" class="treasureImg animated zoomIn" alt="">
   <script src="treasure.js"></script>
 </body>
 

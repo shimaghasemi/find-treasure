@@ -1,8 +1,10 @@
 let treasureMap = document.querySelector('#treasureMapBox')
 let finishText = document.querySelector('.finishText');
-// Timer
 let timer = document.querySelector('#timer');
-let bombTimer = document.querySelector('#bombTimer');
+let treasure = document.querySelector('#treasure');
+let timerBox = document.querySelector('.timerBox');
+let startBtn = document.querySelector('#startBtn');
+
 function buildCountDown(inputSeconds) {
   let hours = 0;
   let minutes = 0;
@@ -13,18 +15,13 @@ function buildCountDown(inputSeconds) {
   return `${hours > 9 ? hours : '0' + hours}:${minutes > 9 ? minutes : '0' + minutes}:${seconds > 9 ? seconds : '0' + seconds}`;
 }
 
-const randomBomb = () => {
-  return Math.floor(Math.random() * (window.screen.height - (window.screen.height - 200))) + 200;
-}
-
 handleCountDown = (targetSeconds) => {
   let countDownTimer = setInterval(function () {
     let countDownResult = buildCountDown(targetSeconds);
     timer.innerHTML = countDownResult;
     targetSeconds--;
     if (targetSeconds < 5) {
-      let timerBox = document.querySelector('.timerBox');
-      timerBox.style.backgroundColor = 'red';
+      timerBox.style.backgroundColor = '#951111';
       timer.style.color = '#fff';
       timer.classList.add('pulse');
     }
@@ -32,36 +29,19 @@ handleCountDown = (targetSeconds) => {
       clearInterval(countDownTimer);
       timer.style.display = 'none';
       finishText.style.display = 'block'
-      treasureMap.style.display = 'none';
+      treasureMap.removeEventListener('click', userPoint)
     }
   }, 1000);
 }
-
-handleBombTimer = () =>{
-  let targetBomb = 5;
-  let countDownBombTimer = setInterval(function () {
-    let countDownResult = buildCountDown(targetBomb);
-    bombTimer.innerHTML = countDownResult;
-    console.log(countDownResult)
-    targetBomb --;
-    if (targetSeconds === -1) {
-      clearInterval(countDownBombTimer);
-      alert(`Finished`)
-      document.createElement('div')
-      document.classList='explosion animated bounceIn'
-    }
-  }, 1000);
-}
-
 
 handleStart = () => {
-  let startBtn = document.querySelector('#startBtn')
   let startText = document.querySelector('.description')
   treasureMap.style.display = 'block';
   startBtn.style.display = 'none';
   startText.style.display = 'none';
   timer.style.display = 'block';
   handleCountDown(10)
+  treasureMap.addEventListener('click', userPoint)
 }
 
 startBtn.addEventListener('click', handleStart)
@@ -91,23 +71,32 @@ const checkDistance = (selectedPoint) => {
 const isUserWin = (distance) => {
   return distance < 50;
 };
+let heartCount = 1;
 const showHelpBox = (userPointX, userPointY, distance) => {
-  let wrapper = document.createElement('span');
-  let content = `فاصله شما تا هدف : ${distance} متر`
-  wrapper.style.position = 'absolute';
-  wrapper.style.top = userPointY + 'px';
-  wrapper.style.left = userPointX + 'px';
-  wrapper.innerHTML = content;
-  setTimeout(() => {
-    wrapper.innerHTML = `${distance}متر`
-    wrapper.style.backgroundColor = 'rgba(232, 15, 15, 0.46)'
-  }, 1000);;
-  document.body.appendChild(wrapper);
+  if (heartCount < 9) {
+    console.log(heartCount)
+    let heart = document.querySelector(`#heart${heartCount}`);
+    console.log(heart)
+    heart.classList.add('animated', 'zoomOutLeft')
+    heartCount++;
+    let wrapper = document.createElement('span');
+    let content = `فاصله شما تا هدف : ${distance} متر`
+    wrapper.style.position = 'absolute';
+    wrapper.style.top = userPointY + 'px';
+    wrapper.style.left = userPointX + 'px';
+    wrapper.innerHTML = content;
+    setTimeout(() => {
+      wrapper.innerHTML = `${distance}متر`
+      wrapper.style.backgroundColor = 'rgba(232, 15, 15, 0.46)'
+    }, 1000);;
+    document.body.appendChild(wrapper);
+  } else {
+    let explosion = document.querySelector('#explosion')
+    explosion.style.display = "block"
+  }
 };
 
-treasureMap.addEventListener('click', (evt) => {
-  handleBombTimer();
-  console.log(handleBombTimer)
+function userPoint(evt) {
   let userSelectedPoint = {
     x: evt.clientX,
     y: evt.clientY
@@ -115,13 +104,20 @@ treasureMap.addEventListener('click', (evt) => {
   let distance = checkDistance(userSelectedPoint);
   showHelpBox(userSelectedPoint.x, userSelectedPoint.y, distance);
   if (isUserWin(distance)) {
-    let treasure = document.querySelector('.treasureImg')
+    treasureMap.removeEventListener('click', userPoint)
     alert('شما برنده شدید');
+    timerBox.style.backgroundColor = '#951111';
     timer.style.display = 'none';
     finishText.style.display = 'block'
-    treasureMap.style.display = 'none';
     treasure.style.display = 'block'
     treasure.style.top = userSelectedPoint.y + 'px';
     treasure.style.left = userSelectedPoint.x + 'px';
+
+    // let finishText = document.createElement('h5');
+    // console.log(finishText)
+    // finishText.classList.add('animated', 'zoomIn', 'finishText')
+    // let finish = 'Finished Game'
+    // finishText.innerHTML = finish;
   }
-});
+};
+
