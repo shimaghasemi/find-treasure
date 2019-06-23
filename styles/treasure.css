@@ -65,7 +65,7 @@
 }
 
 .treasureMap {
-  background-image: url(./treasure-map.jpg);
+  background-image: url(../images/treasure-map.jpg);
   width: 100%;
   margin: 0 auto;
   background-repeat: no-repeat;
@@ -92,7 +92,7 @@ span {
 
 .explosion {
   display: none;
-  background-image: url(./explosion.jpg);
+  background-image: url(../images/explosion.jpg);
   width: 100%;
   min-height: 100vh;
   background-repeat: no-repeat;

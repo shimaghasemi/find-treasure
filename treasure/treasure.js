@@ -102,7 +102,7 @@ function userPoint(evt) {
   };
   let distance = checkDistance(userSelectedPoint);
   showHelpBox(userSelectedPoint.x, userSelectedPoint.y, distance);
-  if (isUserWin(distance)) {
+  if (isUserWin(distance) && heartCount < 9) {
     treasureMap.removeEventListener('click', userPoint)
     alert('شما برنده شدید');
     timerBox.style.backgroundColor = '#951111';
