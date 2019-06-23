@@ -40,13 +40,12 @@ handleStart = () => {
   startBtn.style.display = 'none';
   startText.style.display = 'none';
   timer.style.display = 'block';
-  handleCountDown(10)
+  handleCountDown(30)
   treasureMap.addEventListener('click', userPoint)
 }
 
 startBtn.addEventListener('click', handleStart)
 
-// Game
 const randomGenerator = (start, end) => {
   return Math.floor((Math.random() * (end - start))) + start;
 };
